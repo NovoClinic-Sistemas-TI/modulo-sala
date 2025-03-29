@@ -1,0 +1,120 @@
+<odoo>
+
+    <!-- Vista de árbol -->
+    <record id="vista_arbol_reserva_sala_operaciones" model="ir.ui.view">
+        <field name="name">surgery.reservation.tree</field>
+        <field name="model">surgery.reservation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="fecha" string="Fecha de Registro"/>
+                <field name="medico" string="Medico"/>
+                <field name="paciente" string="Paciente"/>
+                <field name="sala_operaciones_id" string="Sala de operaciones"/>
+                <field name="procedimiento_id" string="Procedimiento Medico" widget="many2many_tags"/>
+                <field name="tipo_cirugia"/>
+                <field name="hora_inicio" string="Hora de inicio"/>
+                <field name="hora_fin" string="Hora de fin"/>
+                <field name="estado"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de formulario -->
+<record id="vista_formulario_reserva_sala_operaciones" model="ir.ui.view">
+    <field name="name">surgery.reservation.form</field>
+    <field name="model">surgery.reservation</field>
+    <field name="arch" type="xml">
+        <form string="Reserva de sala de operaciones">
+            <header>
+                <button name="confirmar" string="Confirmar Reserva" type="object" class="btn-primary"/>
+                <field name="estado" widget="statusbar" statusbar_fields='{"label":"Estado"}' statusbar_colors='{"Pendiente":"orange","Confirmada":"green","Cancelada":"red"}'/>
+            </header>
+            <sheet>
+                <h2> 
+                    <label for="medico"></label>
+                    <field name="medico" options="{'no_create': True, 'no_create_edit': True}"/> <!-- Nombre del medico como encabezado -->
+                </h2>
+                <group>
+                    <group string="Información de la Reserva">
+                        <field name="fecha" widget="date" options="{'datepicker': {'showTime': false}}"/>
+                        <field name="paciente" options="{'no_create_edit': True}"/>
+                        <field name="sala_operaciones_id" options="{'no_open': True, 'no_create': True, 'no_edit': True}"/>
+                        <field name="procedimiento_id" options="{'no_open': True, 'no_create': True, 'no_edit': True}" widget="many2many_tags"/>
+                        <field name="servicio_laboratorio" options="{'no_create': True, 'no_edit': True}" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="product_id" options="{'no_create': True, 'no_edit': True}"/>
+                                    <field name="cantidad"/>
+                                    <field name="precio_producto"/>
+                                    <field name="asume_costo" widget="selection"/>
+                                </tree>
+                            </field>
+                        <field name="gastos_medico" readonly="1"/>
+                        <field name="gastos_paciente" readonly="1"/>
+                        <field name="precio_servicio_laboratorio" readonly="1"/>
+                    </group>
+                    <group string="Horario">
+                        <field name="hora_inicio" widget="datetime"/>
+                        <field name="hora_fin" widget="datetime"/>
+                        <field name="service_extras" options="{'no_create': True, 'no_edit': True}" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="service_id" options="{'no_create': True, 'no_edit': True}"/>
+                                    <field name="cantidad"/>
+                                    <field name="precio_producto"/>
+                                    <field name="asume_costo" widget="selection"/>
+                                </tree>
+                            </field>
+                        <field name="gastos_medico" readonly="1"/>
+                        <field name="gastos_paciente" readonly="1"/>
+                        <field name="precio_servicio_laboratorio" readonly="1"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Detalles">
+                        <group>
+                            <field name="tipo_cirugia"/>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+        </form>
+    </field>
+</record>
+
+<!-- Vista de search view -->
+<record id="vista_busqueda_reserva_sala_operaciones" model="ir.ui.view">
+    <field name="name">surgery.reservation.search</field>
+    <field name="model">surgery.reservation</field>
+    <field name="arch" type="xml">
+        <search string="Buscar reservas">
+            <field name="sala_operaciones_id" string="Sala de Operaciones"/>
+            <field name="medico" string="Médico"/>
+            <field name="hora_inicio" string="Fecha Hora de inicio"/>
+            <field name="hora_fin" string="Fecha Hora de fin"/>
+        </search>
+    </field>
+</record>
+    <!-- Vista de calendario -->
+<!-- Eliminar las etiquetas <templates> dentro del <calendar> -->
+<record id="vista_calendario_reserva_sala_operaciones" model="ir.ui.view">
+    <field name="name">surgery.reservation.calendar</field>
+    <field name="model">surgery.reservation</field>
+    <field name="arch" type="xml">
+        <calendar string="Reservas de sala de operaciones" 
+                  date_start="hora_inicio" 
+                  date_stop="hora_fin" 
+                  color="color_sala"
+                  mode="week">
+            <field name="sala_operaciones_id"/>
+            <field name="medico"/>
+            <field name="paciente"/>
+            <field name="procedimiento_id"/>
+        </calendar>
+    </field>
+</record>
+
+</odoo>

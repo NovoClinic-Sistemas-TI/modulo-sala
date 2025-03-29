@@ -1,0 +1,44 @@
+<odoo>
+<record id="view_procedimiento_medico_search" model="ir.ui.view">
+    <field name="name">medical.procedure.search</field>
+    <field name="model">medical.procedure</field>
+    <field name="arch" type="xml">
+        <search string="Buscar procedimientos médicos">
+            <field name="codigo"/>
+            <field name="categoria"/>
+            <field name="nombre"/>
+        </search>
+    </field>
+</record>
+
+
+<record id="view_procedimiento_medico_tree" model="ir.ui.view">
+    <field name="name">medical.procedure.tree</field>
+    <field name="model">medical.procedure</field>
+    <field name="arch" type="xml">
+        <tree string="Procedimientos médicos">
+            <field name="codigo"/>
+            <field name="categoria"/>
+            <field name="nombre"/>
+        </tree>
+    </field>
+</record>
+
+
+<record id="view_procedimiento_medico_form" model="ir.ui.view">
+    <field name="name">medical.procedure.form</field>
+    <field name="model">medical.procedure</field>
+    <field name="arch" type="xml">
+        <form string="Procedimiento médico">
+            <sheet>
+                <group>
+                    <field name="codigo"/>
+                    <field name="categoria"/>
+                    <field name="nombre"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+</odoo>

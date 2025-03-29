@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_operating_room_form" model="ir.ui.view">
+        <field name="name">operating.room.form</field>
+        <field name="model">operating.room</field>
+        <field name="arch" type="xml">
+            <form string="Gestión de Salas">
+                <sheet>
+                    <group>
+                        <field name="nombre"/>
+                        <field name="capacidad"/>
+                        <field name="color"/>
+                    </group>
+                    <notebook>
+                        <page string="Reservas">
+                            <field name="reservations" widget="one2many_list"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_operating_room_tree" model="ir.ui.view">
+        <field name="name">operating.room.tree</field>
+        <field name="model">operating.room</field>
+        <field name="arch" type="xml">
+            <tree string="Gestión de Salas">
+                <field name="nombre"/>
+                <field name="capacidad"/>
+                <field name="color"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_operating_room_search" model="ir.ui.view">
+        <field name="name">operating.room.search</field>
+        <field name="model">operating.room</field>
+        <field name="arch" type="xml">
+            <search string="Gestión de Salas">
+                <field name="nombre"/>
+                <field name="capacidad"/>
+            </search>
+        </field>
+    </record>
+</odoo>

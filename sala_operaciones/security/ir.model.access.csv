@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_medical_procedure,medical.procedure,model_medical_procedure,group_hospital_admin,1,1,1,1
+access_medical_procedure_medico,medical.procedure,model_medical_procedure,group_medico,1,1,1,0
+access_surgery_reservation,surgery.reservation,model_surgery_reservation,group_hospital_admin,1,1,1,1
+access_surgery_reservation_medico,surgery.reservation,model_surgery_reservation,group_medico,1,1,1,0
+access_operating_room,operating.room,model_operating_room,group_hospital_admin,1,1,1,1
+access_operating_room_medico,operating.room,model_operating_room,group_medico,1,1,1,1

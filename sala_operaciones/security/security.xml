@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Grupo "Administrador Hospital" (como el jefe) -->
+    <record id="group_hospital_admin" model="res.groups">
+        <field name="name">Administrador Hospital</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <!-- Grupo "Médico" (solo ve sus cosas) -->
+    <record id="group_medico" model="res.groups">
+        <field name="name">Médico</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- Grupo "Laboratorio" (solo ve exámenes) -->
+    <record id="group_laboratorio" model="res.groups">
+        <field name="name">Laboratorio</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="implied_ids" eval="[(4, ref('group_medico'))]"/>
+    </record>
+</odoo>

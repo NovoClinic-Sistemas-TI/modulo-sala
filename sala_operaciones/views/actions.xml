@@ -1,0 +1,46 @@
+ <odoo>
+
+
+    <!-- Acción de ventana -->
+    <record id="accion_reserva_sala_operaciones" model="ir.actions.act_window">
+        <field name="name">Reserva de Pacientes</field>
+        <field name="res_model">surgery.reservation</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+    <!-- Acción para la vista de árbol de salas de operaciones -->
+    <record id="accion_sala_operaciones" model="ir.actions.act_window">
+        <field name="name">Salas de operaciones</field>
+        <field name="res_model">operating.room</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+<!-- Acción para la vista Lista Procedimiento medico -->
+    <record id="action_procedimiento_medico" model="ir.actions.act_window">
+        <field name="name">Procedimientos médicos</field>
+        <field name="res_model">medical.procedure</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menú principal -->
+    <menuitem id="surgery_reservation_menu" name="Sala de operaciones" sequence="10"/>
+
+    <!-- Submenú con la acción -->
+    <menuitem id="surgery_reservation_submenu" name="Reservas"
+              parent="surgery_reservation_menu"
+              action="accion_reserva_sala_operaciones"/> <!-- Cambio de ID de acción -->
+
+    <!-- Menu para gestionar las salas de operaciones -->
+    <menuitem id="surgery_operating_room_menu" name="Gestion de Salas"
+            parent="surgery_reservation_menu" sequence="50"/>
+
+<!-- Submenú con la acción para gestionar las salas de operaciones -->
+    <menuitem id="surgery_operating_room_submenu" name="Gestionar salas"
+          parent="surgery_operating_room_menu"
+          action="accion_sala_operaciones"/>
+
+ <!-- Menu para gestionar los procedimientos médicos -->
+    <menuitem id="procedimiento_medico_menu" name="Procedimientos Medicos"
+          parent="surgery_reservation_menu" sequence="60"
+          action="action_procedimiento_medico"/>
+
+
+</odoo>

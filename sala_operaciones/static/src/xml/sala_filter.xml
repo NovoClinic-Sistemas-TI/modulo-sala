@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <templates>
+        <t t-name="sala_operaciones.SalaFilter" owl="1">
+            <div class="o_calendar_sidebar_container col-auto overflow-x-hidden overflow-y-auto">
+                <!-- Mensaje de prueba (visible siempre) -->
+                <div style="
+                    background: #28a745; 
+                    color: white;
+                    padding: 20px;
+                    font-size: 24px;
+                    text-align: center;
+                ">
+                    ¡Hola Mundo! Este componente se está cargando. 🎉
+                </div>
+                <div class="o_calendar_sidebar_section bg-white" 
+                     style="height: auto !important; min-height: 300px; overflow: visible !important">
+                    <div class="calendar-sidebar-header p-3 border-bottom">
+                        <h4 class="mb-0 fw-bold">Filtrar por Sala</h4>
+                    </div>
+                    <div class="calendar-sidebar-content p-3">
+                        <div t-if="state.salas.length === 0" class="alert alert-info">
+                            No hay salas disponibles.
+                        </div>
+                        <div t-else="" class="list-group">
+                            <t t-foreach="state.salas" t-as="sala">
+                                <label class="list-group-item">
+                                    <input type="checkbox" 
+                                           t-on-change="() => toggleFilter(sala.id)"/>
+                                    <span t-esc="sala.name" t-att-style="'color: ' + sala.color"/>
+                                </label>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </templates>
+</odoo>
